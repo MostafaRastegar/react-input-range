@@ -62,6 +62,7 @@ class App extends React.Component {
         maxValue={20}
         minValue={0}
         value={this.state.value}
+        rtl
         onChange={value => this.setState({ value })} />
     );
   }
@@ -115,6 +116,10 @@ If this property is set to true, you can drag the entire track.
 #### formatLabel: (value: number, type: string): string
 
 By default, value labels are displayed as plain numbers. If you want to change the display, you can do so by passing in a function. The function can return something different, i.e.: append a unit, reduce the precision of a number.
+
+#### rtl: boolean
+
+If this property is set to true, you can use rtl mode.
 
 #### maxValue: number
 
