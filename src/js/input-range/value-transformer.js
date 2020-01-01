@@ -122,14 +122,18 @@ export function getPositionsFromValues(values, minValue, maxValue, clientRect) {
  * @param {ClientRect} clientRect
  * @return {Point}
  */
-export function getPositionFromEvent(event, clientRect) {
+export function getPositionFromEvent(event, clientRect, rtl) {
   const length = clientRect.width;
   const { clientX } = event.touches ? event.touches[0] : event;
-
-  return {
-    x: clamp(clientX - clientRect.left, 0, length),
+  const position = {
     y: 0,
   };
+  if (rtl) {
+    position.x = clamp(-clientX + clientRect.right, 0, length);
+    return position;
+  }
+  position.x = clamp(clientX - clientRect.left, 0, length);
+  return position;
 }
 
 /**

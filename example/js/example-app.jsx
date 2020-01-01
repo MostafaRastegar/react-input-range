@@ -35,6 +35,13 @@ export default class ExampleApp extends React.Component {
           value={this.state.value}
           onChange={value => this.setState({ value })}
           onChangeComplete={value => console.log(value)} />
+        <InputRange
+          maxValue={20}
+          minValue={0}
+          value={this.state.value}
+          onChange={value => this.setState({ value })}
+          onChangeComplete={value => console.log(value)}
+          rtl />
 
         <InputRange
           maxValue={20}
@@ -42,7 +49,8 @@ export default class ExampleApp extends React.Component {
           disabled
           value={this.state.value2}
           onChange={value => this.setState({ value })}
-          onChangeComplete={value => console.log(value)} />
+          onChangeComplete={value => console.log(value)}
+          rtl />
 
         <InputRange
           maxValue={20}
@@ -51,7 +59,8 @@ export default class ExampleApp extends React.Component {
           value={this.state.value3}
           onChange={value => this.setState({ value3: value })}
           onChangeStart={value => console.log('onChangeStart with value =', value)}
-          onChangeComplete={value => console.log(value)} />
+          onChangeComplete={value => console.log(value)}
+          rtl />
 
         <InputRange
           maxValue={20}
@@ -60,6 +69,14 @@ export default class ExampleApp extends React.Component {
           value={this.state.value4}
           onChange={value => this.setState({ value4: value })}
           onChangeComplete={value => console.log(value)} />
+        <InputRange
+          maxValue={20}
+          minValue={0}
+          formatLabel={value => `${value}kg`}
+          value={this.state.value4}
+          onChange={value => this.setState({ value4: value })}
+          onChangeComplete={value => console.log(value)}
+          rtl />
 
         <InputRange
           draggableTrack
@@ -68,15 +85,15 @@ export default class ExampleApp extends React.Component {
           onChange={value => this.setState({ value5: value })}
           onChangeComplete={value => console.log(value)}
           value={this.state.value5} />
-
         <InputRange
-          allowSameValues
           draggableTrack
           maxValue={20}
           minValue={0}
-          onChange={value => this.setState({ value6: value })}
+          onChange={value => this.setState({ value5: value })}
           onChangeComplete={value => console.log(value)}
-          value={this.state.value6} />
+          value={this.state.value5}
+          rtl />
+
       </form>
     );
   }

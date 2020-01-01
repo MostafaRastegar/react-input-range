@@ -22,6 +22,7 @@ export default class Slider extends React.Component {
    * @property {Function} percentage
    * @property {Function} type
    * @property {Function} value
+   * @property {Boolean} rtl
    */
   static get propTypes() {
     return {
@@ -36,6 +37,7 @@ export default class Slider extends React.Component {
       percentage: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,
       value: PropTypes.number.isRequired,
+      rtl: PropTypes.bool,
     };
   }
 
@@ -52,6 +54,7 @@ export default class Slider extends React.Component {
    * @param {number} props.percentage
    * @param {number} props.type
    * @param {number} props.value
+   * @param {boolean} props.rtl
    */
   constructor(props) {
     super(props);
@@ -80,12 +83,16 @@ export default class Slider extends React.Component {
    * @return {Object}
    */
   getStyle() {
+    const rtl = this.props.rtl;
     const perc = (this.props.percentage || 0) * 100;
     const style = {
       position: 'absolute',
-      left: `${perc}%`,
     };
-
+    if (rtl) {
+      style.right = `${perc}%`;
+      return style;
+    }
+    style.left = `${perc}%`;
     return style;
   }
 

@@ -12,6 +12,7 @@ export default class Track extends React.Component {
    * @property {Function} children
    * @property {Function} classNames
    * @property {Boolean} draggableTrack
+   * @property {Boolean} rtl
    * @property {Function} onTrackDrag
    * @property {Function} onTrackMouseDown
    * @property {Function} percentages
@@ -24,6 +25,7 @@ export default class Track extends React.Component {
       onTrackDrag: PropTypes.func,
       onTrackMouseDown: PropTypes.func.isRequired,
       percentages: PropTypes.objectOf(PropTypes.number).isRequired,
+      rtl: PropTypes.bool,
     };
   }
 
@@ -31,6 +33,7 @@ export default class Track extends React.Component {
    * @param {Object} props
    * @param {InputRangeClassNames} props.classNames
    * @param {Boolean} props.draggableTrack
+   * @param {Boolean} props.rtl
    * @param {Function} props.onTrackDrag
    * @param {Function} props.onTrackMouseDown
    * @param {number} props.percentages
@@ -59,10 +62,17 @@ export default class Track extends React.Component {
    * @return {Object} CSS styles
    */
   getActiveTrackStyle() {
+    const rtl = this.props.rtl;
     const width = `${(this.props.percentages.max - this.props.percentages.min) * 100}%`;
-    const left = `${this.props.percentages.min * 100}%`;
-
-    return { left, width };
+    const percentagesCalc = `${this.props.percentages.min * 100}%`;
+    const result = {
+      width,
+    };
+    if (rtl) {
+      result.right = percentagesCalc;
+      return result;
+    }
+    return { left: percentagesCalc, width };
   }
 
   /**
@@ -143,12 +153,14 @@ export default class Track extends React.Component {
     const clientX = event.touches ? event.touches[0].clientX : event.clientX;
     const trackClientRect = this.getClientRect();
     const position = {
-      x: clientX - trackClientRect.left,
       y: 0,
     };
-
+    if (this.props.rtl) {
+      position.x = trackClientRect.right - clientX;
+    } else {
+      position.x = clientX - trackClientRect.left;
+    }
     this.props.onTrackMouseDown(event, position);
-
     if (this.props.draggableTrack) {
       this.addDocumentMouseMoveListener();
       this.addDocumentMouseUpListener();

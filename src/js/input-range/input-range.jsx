@@ -38,6 +38,7 @@ export default class InputRange extends React.Component {
       onChangeComplete: PropTypes.func,
       step: PropTypes.number,
       value: valuePropType,
+      rtl: PropTypes.bool,
     };
   }
 
@@ -54,6 +55,7 @@ export default class InputRange extends React.Component {
       maxValue: 10,
       minValue: 0,
       step: 1,
+      rtl: false,
     };
   }
 
@@ -286,8 +288,11 @@ export default class InputRange extends React.Component {
    * @param {Range|number} values
    * @return {void}
    */
-  updateValues(values) {
+  updateValues(values, base) {
     if (!this.shouldUpdate(values)) {
+      return;
+    }
+    if (base && (values.max > base.maxValue || values.min < base.minValue)) {
       return;
     }
 
@@ -371,7 +376,7 @@ export default class InputRange extends React.Component {
       return;
     }
 
-    const position = valueTransformer.getPositionFromEvent(event, this.getTrackClientRect());
+    const position = valueTransformer.getPositionFromEvent(event, this.getTrackClientRect(), this.props.rtl);
     this.isSliderDragging = true;
     requestAnimationFrame(() => this.updatePosition(key, position));
   }
@@ -394,11 +399,11 @@ export default class InputRange extends React.Component {
       value: { max, min },
     } = this.props;
 
-    const position = valueTransformer.getPositionFromEvent(event, this.getTrackClientRect());
+    const position = valueTransformer.getPositionFromEvent(event, this.getTrackClientRect(), this.props.rtl);
     const value = valueTransformer.getValueFromPosition(position, minValue, maxValue, this.getTrackClientRect());
     const stepValue = valueTransformer.getStepValueFromValue(value, this.props.step);
 
-    const prevPosition = valueTransformer.getPositionFromEvent(prevEvent, this.getTrackClientRect());
+    const prevPosition = valueTransformer.getPositionFromEvent(prevEvent, this.getTrackClientRect(), this.props.rtl);
     const prevValue = valueTransformer.getValueFromPosition(prevPosition, minValue, maxValue, this.getTrackClientRect());
     const prevStepValue = valueTransformer.getStepValueFromValue(prevValue, this.props.step);
 
@@ -408,8 +413,7 @@ export default class InputRange extends React.Component {
       min: min - offset,
       max: max - offset,
     };
-
-    this.updateValues(transformedValues);
+    this.updateValues(transformedValues, { maxValue, minValue });
   }
 
   /**
@@ -616,7 +620,8 @@ export default class InputRange extends React.Component {
           onSliderKeyDown={this.handleSliderKeyDown}
           percentage={percentage}
           type={key}
-          value={value} />
+          value={value}
+          rtl={this.props.rtl} />
       );
 
       return slider;
@@ -660,7 +665,7 @@ export default class InputRange extends React.Component {
       <div
         aria-disabled={this.props.disabled}
         ref={(node) => { this.node = node; }}
-        className={componentClassName}
+        className={this.props.rtl ? `rtl ${componentClassName}` : componentClassName}
         onKeyDown={this.handleKeyDown}
         onKeyUp={this.handleKeyUp}
         onMouseDown={this.handleMouseDown}
@@ -678,6 +683,7 @@ export default class InputRange extends React.Component {
           ref={(trackNode) => { this.trackNode = trackNode; }}
           percentages={percentages}
           onTrackDrag={this.handleTrackDrag}
+          rtl={this.props.rtl}
           onTrackMouseDown={this.handleTrackMouseDown}>
 
           {this.renderSliders()}

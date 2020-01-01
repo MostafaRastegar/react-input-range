@@ -24,3 +24,15 @@
   position: absolute;
   top: $input-range-label-value-position-top;
 }
+
+.rtl {
+  .input-range__label--min {
+    left: auto !important;
+    right: 0;
+  }
+  
+  .input-range__label--max {
+    left: 0 !important;
+    right: auto;
+  }
+}

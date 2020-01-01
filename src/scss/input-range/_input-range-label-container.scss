@@ -6,3 +6,16 @@
     left: 50%;
   }
 }
+
+.rtl{
+  .input-range__label-container {
+    left: auto !important;
+    right: -50%;
+    position: relative;
+  
+    .input-range__label--max & {
+      left: auto !important;
+      right: 50%;
+    }
+  }
+}
