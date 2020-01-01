@@ -4,7 +4,8 @@
   cursor: pointer;
   display: block;
   height: $input-range-track-height;
-  position: relative;  
+  position: relative;
+
   .input-range--disabled & {
     background: $input-range-track-disabled-background;
   }
@@ -23,8 +24,9 @@
 }
 
 .rtl .input-range__track{
-  transition: $input-range-track-transition-right !important;
+  transition: $input-range-track-transition-right;
 }
+
 .input-range__track{
   transition: $input-range-track-transition;
 }

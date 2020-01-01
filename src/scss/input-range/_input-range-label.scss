@@ -27,12 +27,12 @@
 
 .rtl {
   .input-range__label--min {
-    left: auto !important;
+    left: auto;
     right: 0;
   }
-  
+
   .input-range__label--max {
-    left: 0 !important;
+    left: 0;
     right: auto;
   }
 }

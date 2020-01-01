@@ -9,12 +9,12 @@
 
 .rtl{
   .input-range__label-container {
-    left: auto !important;
+    left: auto;
     right: -50%;
     position: relative;
-  
+
     .input-range__label--max & {
-      left: auto !important;
+      left: auto;
       right: 50%;
     }
   }
