@@ -1,5 +1,5 @@
 {
-  "name": "react-input-range",
+  "name": "react-hgs-input-range",
   "version": "1.3.0",
   "description": "React component for inputting numeric values within a range",
   "keywords": [
@@ -14,11 +14,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidchin/react-input-range.git"
+    "url": "https://github.com/snappmarket/react-input-range.git"
   },
   "main": "lib/js/index.js",
   "types": "react-input-range.d.ts",
-  "author": "David Chin",
+  "author": ["David Chin","Mostafa Rastegar"],
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^15.0.1",
