@@ -9,9 +9,9 @@ A CodePen demo is available [here](http://codepen.io/davidchin/full/GpNvqw/).
 
 ## Installation
 
-1. Install `react-input-range` using npm (or [yarn]). `npm install react-input-range`
-2. Import `react-input-range` to use `InputRange` component.
-3. Optionally, import `react-input-range/lib/css/index.css` if you want to apply the default styling.
+1. Install `react-hgs-input-range` using npm. `npm install react-hgs-input-range`
+2. Import `react-hgs-input-range` to use `InputRange` component.
+3. Optionally, import `react-hgs-input-range/lib/css/index.css` if you want to apply the default styling.
 
 ## Usage
 
@@ -19,7 +19,7 @@ To accept min/max value:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InputRange from 'react-input-range';
+import InputRange from 'react-hgs-input-range';
 
 class App extends React.Component {
   constructor(props) {
