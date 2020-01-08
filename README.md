@@ -1,4 +1,7 @@
-# react-input-range
+# react-hgs-input-range
+
+## npm 
+npm package link [here](https://www.npmjs.com/package/react-hgs-input-range)
 
 `InputRange` is a React component allowing users to input numeric values within a specific range. It can accept a single value, or a range of values (min/max). By default, basic styles are applied, but can be overridden depending on your design requirements.
 
